@@ -22,6 +22,7 @@ const signupController = async (req, res) => {
       password: hashedPassword,
       role: "user",
       provider: "local",
+      token,
     }).save();
 
     return res.status(200).send({

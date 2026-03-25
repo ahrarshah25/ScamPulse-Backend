@@ -1,9 +1,9 @@
-import findUserToken from "../../utils/pushNotification.js";
 import sendPush from "../../utils/fcm.js";
+import findUserToken from "../../utils/pushNotification.js";
 
-const sendLoginNotification = async (req, res) => {
+const sendSignupNotification = async (req, res) => {
   try {
-    const { name, email } = req.body;
+    const { email, name } = req.body;
 
     const token = await findUserToken(email.trim().toLowerCase());
 
@@ -14,8 +14,8 @@ const sendLoginNotification = async (req, res) => {
       });
     }
 
-    const title = "Login Alert 🔐";
-    const body = `Welcome ${name}, you have successfully logged in!`;
+    const title = "Signup Successfully ✅";
+    const body = `Welcome ${name}, Your account has been successfully created!`;
 
     await sendPush(token, title, body);
 
@@ -32,4 +32,4 @@ const sendLoginNotification = async (req, res) => {
   }
 };
 
-export default sendLoginNotification;
+export default sendSignupNotification;
